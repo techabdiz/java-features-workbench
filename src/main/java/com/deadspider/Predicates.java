@@ -3,7 +3,7 @@ package com.deadspider;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-public class Main {
+public class Predicates {
     public static void main(String[] args) {
 
         BiPredicate<String, String> s = (a,b)->a.startsWith(b);

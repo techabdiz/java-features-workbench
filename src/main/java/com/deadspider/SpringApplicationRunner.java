@@ -17,9 +17,9 @@ import java.util.List;
 public class SpringApplicationRunner {
 
     @Autowired
-    private BookRepo repo;
+    private UserService service;
 
-    private void initBookTable() {
+    /*private void initBookTable() {
         try {
             List<Book> books = Utilities.readAllLines(new File("src/main/resources/books.csv").toPath())
                     .stream().map(s->new Book().initBooksCSV(s)).toList();
@@ -28,12 +28,16 @@ public class SpringApplicationRunner {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }*/
 
+    public void main() {
+        System.out.println(service.byAuthor.apply("Foreman, John"));
+        System.out.println(service.byAuthor.apply("Dubner, Stephen"));
     }
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
-       // ctx.getBean(SpringApplicationRunner.class).initBookTable();
+        ctx.getBean(SpringApplicationRunner.class).main();
 
     }
 }

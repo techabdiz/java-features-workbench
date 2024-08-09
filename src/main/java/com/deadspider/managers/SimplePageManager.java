@@ -9,11 +9,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 @ToString
-public class SimplePageManager {
-    private final LinkedList<Page> pages = new LinkedList<>();
+public class SimplePageManager<T> implements PageManager<T>{
+    private final LinkedList<Page<T>> pages = new LinkedList<>();
 
 
-    public Page getPageFor(Integer i) {
+
+    public Page<T> getPageFor(T i) {
         if(pages.isEmpty() || pages.getLast().isFull()) {
             Page p = new Page();
             pages.add(p);
@@ -21,21 +22,19 @@ public class SimplePageManager {
         return pages.getLast();
     }
 
-    public void add(Integer i) {
+    public void add(T i) {
         getPageFor(i).add(new Node(i));
     }
 
-    public void remove(Integer i) {
-        Page p = getPageFor(i);
+    public void remove(T i) {
+        Page<T> p = getPageFor(i);
         if(p.getNode(i).isPresent()) {
             p.remove(p.getNode(i).get());
         }
     }
 
-    public boolean has(Integer i) {
-        Page p = getPageFor(i);
-        return Objects.nonNull(p) && p.getNode(i).isPresent();
+    public boolean has(T i) {
+        return pages.stream().anyMatch(node->node.getNode(i).isPresent());
     }
-
 
 }

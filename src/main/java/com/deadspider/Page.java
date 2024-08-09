@@ -7,24 +7,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Page {
+public class Page<T> {
 
     private static final Integer MAX_PAGE_SIZE = 20; //NODES
 
-    private final List<Node> nodes = new ArrayList<Node>();
+    private final List<Node<T>> nodes = new ArrayList<Node<T>>();
 
-    public void add(Node n) throws PageFullException {
+    public void add(Node<T> n) throws PageFullException {
         if(Objects.equals(nodes.size(), MAX_PAGE_SIZE)) {
             throw new PageFullException();
         }
         nodes.add(n);
     }
 
-    public void remove(Node n) {
+    public void remove(Node<T> n) {
         nodes.remove(n);
     }
 
-    public Optional<Node> getNode(int i) {
+    public Optional<Node<T>> getNode(T i) {
         return nodes.stream().filter(s->s.getValue().equals(i)).findFirst();
     }
 

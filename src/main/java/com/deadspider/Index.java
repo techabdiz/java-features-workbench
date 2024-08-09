@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Index {
 
-    private final LinkedList<Integer> index = new LinkedList<>();
+    /* private final LinkedList<Integer> index = new LinkedList<>();
 
     public int getNodeIndex(Node node) {
         if(index.isEmpty()) {
@@ -37,5 +37,5 @@ public class Index {
         return "Index{" +
                 "index=" + index +
                 '}';
-    }
+    }*/
 }

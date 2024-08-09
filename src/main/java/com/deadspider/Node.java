@@ -6,15 +6,15 @@ import lombok.ToString;
 import java.util.Objects;
 
 @ToString
-public class Node {
+public class Node<T> {
 
-    private final Integer value;
+    private final T value;
 
-    public Node(Integer value) {
+    public Node(T value) {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public T getValue() {
         return value;
     }
 
